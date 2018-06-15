@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class IBANDetector implements IDetector{
-    private String type;
+    private DetectorType type;
     private Pattern pattern;
     @Override
     public boolean detect(String text) {
@@ -25,11 +25,11 @@ public class IBANDetector implements IDetector{
     }
 
     @Override
-    public String getType() {
+    public DetectorType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(DetectorType type) {
         this.type = type;
     }
 }

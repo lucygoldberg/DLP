@@ -1,13 +1,12 @@
 package com.proofpoint.dlp.service;
 
-import java.util.List;
-
 public class SSNDetector implements IDetector {
-    private String type;
+    private DetectorType type;
     private String pattern;
+    private String contextPattern;
     @Override
     public boolean detect(String text) {
-        return text.matches(pattern);
+        return text.matches(contextPattern) && text.matches(pattern);
     }
 
     public void setPattern(String pattern) {
@@ -15,11 +14,15 @@ public class SSNDetector implements IDetector {
     }
 
     @Override
-    public String getType() {
+    public DetectorType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(DetectorType type) {
         this.type = type;
+    }
+
+    public void setContextPattern(String contextPattern) {
+        this.contextPattern = contextPattern;
     }
 }

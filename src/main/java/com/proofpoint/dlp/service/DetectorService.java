@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class DetectorService {
     private List<IDetector> detectors;
-    public List<String> getSensitiveTypes(String text) {
+    public List<DetectorType> getSensitiveTypes(String text) {
         return detectors.stream().filter(detector -> detector.detect(text)).map(IDetector::getType).collect(Collectors.toList());
     }
 
