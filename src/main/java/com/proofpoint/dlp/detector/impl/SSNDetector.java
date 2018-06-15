@@ -1,4 +1,7 @@
-package com.proofpoint.dlp.service;
+package com.proofpoint.dlp.detector.impl;
+
+import com.proofpoint.dlp.detector.IDetector;
+import com.proofpoint.dlp.entity.DetectorType;
 
 public class SSNDetector implements IDetector {
     private DetectorType type;

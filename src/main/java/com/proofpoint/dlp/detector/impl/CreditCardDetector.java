@@ -1,11 +1,13 @@
-package com.proofpoint.dlp.service;
+package com.proofpoint.dlp.detector.impl;
 
+import com.proofpoint.dlp.detector.IDetector;
+import com.proofpoint.dlp.entity.DetectorType;
 import org.apache.commons.validator.routines.CreditCardValidator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CreditCardDetector implements IDetector{
+public class CreditCardDetector implements IDetector {
     private DetectorType type;
     private Pattern pattern;
     private String contextPattern;

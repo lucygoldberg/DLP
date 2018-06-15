@@ -1,5 +1,8 @@
 package com.proofpoint.dlp.service;
 
+import com.proofpoint.dlp.detector.IDetector;
+import com.proofpoint.dlp.entity.DetectorType;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
