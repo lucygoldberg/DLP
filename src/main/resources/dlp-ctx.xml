@@ -22,6 +22,7 @@
         <bean class="com.proofpoint.dlp.service.DetectorService">
             <property name="detectors" ref="detectorList" />
         </bean>
+        <bean class="com.proofpoint.dlp.service.GoogleService" id="googleService"/>
         <util:list id="detectorList">
             <ref bean="ssnDetector" />
             <ref bean="ibanDetector" />

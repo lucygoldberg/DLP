@@ -1,6 +1,7 @@
 package com.proofpoint.dlp.Controller;
 
 import com.proofpoint.dlp.service.DetectorService;
+import com.proofpoint.dlp.service.GoogleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.MediaType;
@@ -22,6 +23,10 @@ public class DLPController {
 
     @Autowired
     private ResourceLoader resourceLoader;
+
+    @Autowired
+    private GoogleService googleService;
+
     @GetMapping(value = "keepalive")
     public String keepalive() {
         return "OK!!!";
@@ -43,5 +48,11 @@ public class DLPController {
                                 return badRequest().body("No file exists");
                             }
                         });
+    }
+    @GetMapping(value = "/detect/drive")
+    public Mono<ResponseEntity<String>> getSensitiveTypesByPath(@RequestParam(value="fileId", required = true) String fileId) {
+        return googleService.getFile(fileId).map(detectorService::getSensitiveTypes)
+                .map(body -> ok().body(body))
+                .switchIfEmpty(Mono.just(badRequest().body("No file exists")));
     }
 }
