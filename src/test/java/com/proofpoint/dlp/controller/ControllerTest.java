@@ -52,17 +52,17 @@ public class ControllerTest {
 
     @Test
     public void testDriveRequest() {
-        String fileId = "1XNTa0WaSkVj-OzI-dNb70jAj8aH0Wjg4";
+        String fileId = "1dJWb55zHCngbVDNcWrpcHFGG-fC3jHyVpW04ET65_U4";
         webTestClient.get().uri("/detect/drive?fileId=" + fileId)
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(String.class)
-                .isEqualTo(DetectorType.CreditCard.toString());
+                .isEqualTo("SSN,IBAN,CreditCard");
     }
 
     @Test
     public void testDriveRequest_false() {
-        String fileId = "1XNTa0WaSkVj-OzI-dNb70jAj8aH0Wjg5";
+        String fileId = "1dJWb55zHCngbVDNcWrpcHFGG-fC3jHyVpW04ET65_U5";
         webTestClient.get().uri("/detect/drive?fileId=" + fileId)
                 .exchange()
                 .expectStatus().is4xxClientError();

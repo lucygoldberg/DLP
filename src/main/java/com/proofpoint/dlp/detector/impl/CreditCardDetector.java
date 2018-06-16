@@ -10,11 +10,11 @@ import java.util.regex.Pattern;
 public class CreditCardDetector implements IDetector {
     private DetectorType type;
     private Pattern pattern;
-    private String contextPattern;
+    private Pattern contextPattern;
     private CreditCardValidator creditCardValidator;
     @Override
     public boolean detect(String text) {
-        if (!text.matches(contextPattern)) {
+        if (!contextPattern.matcher(text).find()) {
             return false;
         }
         Matcher matcher = pattern.matcher(text);
@@ -43,7 +43,7 @@ public class CreditCardDetector implements IDetector {
     }
 
     public void setContextPattern(String contextPattern) {
-        this.contextPattern = contextPattern;
+        this.contextPattern = Pattern.compile(contextPattern);
     }
 
     public void setCreditCardValidator(CreditCardValidator creditCardValidator) {

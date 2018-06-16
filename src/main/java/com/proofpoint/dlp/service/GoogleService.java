@@ -40,7 +40,7 @@ public class GoogleService {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(fileUrl);
         stringBuilder.append(fileId);
-        stringBuilder.append("?alt=media&access_token=");
+        stringBuilder.append("/export?mimeType=text/plain&access_token=");
         stringBuilder.append(token);
         return stringBuilder.toString();
     }

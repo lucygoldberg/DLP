@@ -5,8 +5,8 @@
     <beans>
         <bean class="com.proofpoint.dlp.detector.impl.SSNDetector" id="ssnDetector">
             <property name="type" value="SSN"/>
-            <property name="pattern" value=".*(?:\d{3}-\d{2}-\d{4}|\d{3}\s\d{2}\s\d{4}|\d{9}).*"/>
-            <property name="contextPattern" value=".*(?i)(?:Social Security|Social Security#|Soc Sec|SSN|SSNS|SSN#|SS#).*"/>
+            <property name="pattern" value="(?:\d{3}-\d{2}-\d{4}|\d{3}\s\d{2}\s\d{4}|\d{9})"/>
+            <property name="contextPattern" value="(?i)(?:Social Security|Social Security#|Soc Sec|SSN|SSNS|SSN#|SS#)"/>
         </bean>
         <bean class="com.proofpoint.dlp.detector.impl.IBANDetector" id="ibanDetector">
             <property name="type" value="IBAN"/>
@@ -15,7 +15,7 @@
         <bean class="com.proofpoint.dlp.detector.impl.CreditCardDetector" id="creditCardDetector">
             <property name="type" value="CreditCard"/>
             <property name="pattern" value="(\d{4}-\d{4}-\d{4}-\d{1,4}|\d{4}\s\d{4}\s\d{4}\s\d{1,4}|\d{13,16})"/>
-            <property name="contextPattern" value=".*(?i)(?:amex|american express|americanexpress|Visa|mastercard|master card|mc|mastercards|master cards|diner's Club|diners club|dinersclub|discover card|discovercard|discover cards|carte blanche|carteblanche|credit card|cc#|bank card|bankcard|card number|card num|cardnumber|cardnumbers|card numbers|creditcard|credit cards|creditcards|ccn|debit card|debitcard|debit cards|debitcards|atm card|atmcard|atm cards|atmcards|carte bancaire|carte de crédit|carte de credit|numéro de carte|numero de carte|no de la carte|no de carte|kreditkarte|karte|karteninhaber|karteninhabers|kreditkarteninhaber|kreditkarteninstitut|kreditkartentyp|kartennr|kartennummer|kreditkartennummer|kreditkarten-nummer|carta di credito|carta credito|numero carta|numero della carta|numero di carta|cartão de crédito|cartão de credito|cartao de crédito|cartao de credito|cartão de débito|cartao de débito|cartão de debito|cartao de debito|débito automático|debito automatico|número do cartão|numero do cartão|número do cartao|numero do cartao|número de cartão|numero de cartão|número de cartao|numero de cartao).*" />
+            <property name="contextPattern" value="(?i)(?:amex|american express|americanexpress|Visa|mastercard|master card|mc|mastercards|master cards|diner's Club|diners club|dinersclub|discover card|discovercard|discover cards|carte blanche|carteblanche|credit card|cc#|bank card|bankcard|card number|card num|cardnumber|cardnumbers|card numbers|creditcard|credit cards|creditcards|ccn|debit card|debitcard|debit cards|debitcards|atm card|atmcard|atm cards|atmcards|carte bancaire|carte de crédit|carte de credit|numéro de carte|numero de carte|no de la carte|no de carte|kreditkarte|karte|karteninhaber|karteninhabers|kreditkarteninhaber|kreditkarteninstitut|kreditkartentyp|kartennr|kartennummer|kreditkartennummer|kreditkarten-nummer|carta di credito|carta credito|numero carta|numero della carta|numero di carta|cartão de crédito|cartão de credito|cartao de crédito|cartao de credito|cartão de débito|cartao de débito|cartão de debito|cartao de debito|débito automático|debito automatico|número do cartão|numero do cartão|número do cartao|numero do cartao|número de cartão|numero de cartão|número de cartao|numero de cartao)" />
             <property name="creditCardValidator" ref="creditCardValidator"/>
         </bean>
         <bean class="org.apache.commons.validator.routines.CreditCardValidator" id="creditCardValidator"/>

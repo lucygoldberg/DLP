@@ -3,17 +3,19 @@ package com.proofpoint.dlp.detector.impl;
 import com.proofpoint.dlp.detector.IDetector;
 import com.proofpoint.dlp.entity.DetectorType;
 
+import java.util.regex.Pattern;
+
 public class SSNDetector implements IDetector {
     private DetectorType type;
-    private String pattern;
-    private String contextPattern;
+    private Pattern pattern;
+    private Pattern contextPattern;
     @Override
     public boolean detect(String text) {
-        return text.matches(contextPattern) && text.matches(pattern);
+        return contextPattern.matcher(text).find() && pattern.matcher(text).find();
     }
 
     public void setPattern(String pattern) {
-        this.pattern = pattern;
+        this.pattern = Pattern.compile(pattern);
     }
 
     @Override
@@ -26,6 +28,6 @@ public class SSNDetector implements IDetector {
     }
 
     public void setContextPattern(String contextPattern) {
-        this.contextPattern = contextPattern;
+        this.contextPattern = Pattern.compile(contextPattern);
     }
 }
