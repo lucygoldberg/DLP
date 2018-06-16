@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    <beans>
+        <bean class="com.proofpoint.dlp.detector.impl.SSNDetector" id="ssnDetector">
+            <property name="type" value="SSN"/>
+            <property name="pattern" value=".*(?:\d{3}-\d{2}-\d{4}|\d{3}\s\d{2}\s\d{4}|\d{9}).*"/>
+            <property name="contextPattern" value=".*(?i)(?:Social Security|Social Security#|Soc Sec|SSN|SSNS|SSN#|SS#).*"/>
+        </bean>
+        <bean class="com.proofpoint.dlp.detector.impl.IBANDetector" id="ibanDetector">
+            <property name="type" value="IBAN"/>
+            <property name="pattern" value="(?i)((?:ad|ae|al|at|az|ba|be|bg|bh|ch|cr|cy|cz|de|dk|do|ee|es|fi|fo|fr|gb|ge|gi|gl|gr|hr|hu|ie|il|is|it|kw|kz|lb|li|lt|lu|lv|mc|md|me|mk|mr|mt|mu|nl|no|pl|pt|ro|rs|sa|se|si|sk|sm|tn|tr|vg)\d{2}\s?(?:[a-zA-Z0-9]{4}\s?){1,7}[a-zA-Z0-9]{0,3})" />
+        </bean>
+        <bean class="com.proofpoint.dlp.detector.impl.CreditCardDetector" id="creditCardDetector">
+            <property name="type" value="CreditCard"/>
+            <property name="pattern" value="(\d{4}-\d{4}-\d{4}-\d{1,4}|\d{4}\s\d{4}\s\d{4}\s\d{1,4}|\d{13,16})"/>
+            <property name="contextPattern" value=".*(?i)(?:amex|american express|americanexpress|Visa|mastercard|master card|mc|mastercards|master cards|diner's Club|diners club|dinersclub|discover card|discovercard|discover cards|carte blanche|carteblanche|credit card|cc#|bank card|bankcard|card number|card num|cardnumber|cardnumbers|card numbers|creditcard|credit cards|creditcards|ccn|debit card|debitcard|debit cards|debitcards|atm card|atmcard|atm cards|atmcards|carte bancaire|carte de crédit|carte de credit|numéro de carte|numero de carte|no de la carte|no de carte|kreditkarte|karte|karteninhaber|karteninhabers|kreditkarteninhaber|kreditkarteninstitut|kreditkartentyp|kartennr|kartennummer|kreditkartennummer|kreditkarten-nummer|carta di credito|carta credito|numero carta|numero della carta|numero di carta|cartão de crédito|cartão de credito|cartao de crédito|cartao de credito|cartão de débito|cartao de débito|cartão de debito|cartao de debito|débito automático|debito automatico|número do cartão|numero do cartão|número do cartao|numero do cartao|número de cartão|numero de cartão|número de cartao|numero de cartao).*" />
+            <property name="creditCardValidator" ref="creditCardValidator"/>
+        </bean>
+        <bean class="org.apache.commons.validator.routines.CreditCardValidator" id="creditCardValidator"/>
+        <bean class="com.proofpoint.dlp.service.DetectorService">
+            <property name="detectors" ref="detectorList" />
+        </bean>
+        <util:list id="detectorList">
+            <ref bean="ssnDetector" />
+            <ref bean="ibanDetector" />
+            <ref bean="creditCardDetector"/>
+        </util:list>
+    </beans>
+
+</beans>
