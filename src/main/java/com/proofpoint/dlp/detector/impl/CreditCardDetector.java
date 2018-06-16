@@ -18,10 +18,12 @@ public class CreditCardDetector implements IDetector {
             return false;
         }
         Matcher matcher = pattern.matcher(text);
-        if (matcher.find()) {
+        while (matcher.find()) {
             if (matcher.groupCount() >= 1) {
                 String code = matcher.group(1);
-                return creditCardValidator.isValid(code.replaceAll("[\\s|-]+", ""));
+                if (creditCardValidator.isValid(code.replaceAll("[\\s|-]+", ""))) {
+                    return true;
+                }
             }
         }
         return false;

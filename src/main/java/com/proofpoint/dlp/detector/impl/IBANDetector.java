@@ -13,10 +13,12 @@ public class IBANDetector implements IDetector {
     @Override
     public boolean detect(String text) {
         Matcher matcher = pattern.matcher(text);
-        if (matcher.find()) {
+        while (matcher.find()) {
             if (matcher.groupCount() >= 1) {
                 String code = matcher.group(1);
-                return IBANCheckDigit.IBAN_CHECK_DIGIT.isValid(code.replaceAll("\\s+", ""));
+                if (IBANCheckDigit.IBAN_CHECK_DIGIT.isValid(code.replaceAll("\\s+", ""))) {
+                    return true;
+                }
             }
         }
         return false;
