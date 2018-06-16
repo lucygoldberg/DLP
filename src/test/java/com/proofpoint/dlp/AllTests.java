@@ -1,5 +1,6 @@
 package com.proofpoint.dlp;
 
+import com.proofpoint.dlp.controller.ControllerTest;
 import com.proofpoint.dlp.detector.impl.CreditCardDetectorTest;
 import com.proofpoint.dlp.detector.impl.IBANDetectorTest;
 import com.proofpoint.dlp.detector.impl.SSNDetectorTest;
@@ -12,6 +13,7 @@ import org.junit.runners.Suite;
         SSNDetectorTest.class,
         IBANDetectorTest.class,
         CreditCardDetectorTest.class,
-        DetectorServiceTest.class})
+        DetectorServiceTest.class,
+        ControllerTest.class})
 public class AllTests {
 }
